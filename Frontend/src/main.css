@@ -1,0 +1,137 @@
+/* =========================
+   Global CSS Reset
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   Root Variables (Theme)
+========================= */
+:root {
+  --primary-color: #ff4d4f;     /* DineVibe brand red */
+  --secondary-color: #1f2933;   /* Dark gray */
+  --background-color: #f8f9fb;  /* App background */
+  --text-color: #111827;
+  --border-color: #e5e7eb;
+  --success-color: #22c55e;
+  --error-color: #ef4444;
+
+  --font-main: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* =========================
+   Base Styles
+========================= */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-main);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Root div where React mounts */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   Common Utility Classes
+========================= */
+.container {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 {
+  margin-top: 0.5rem;
+}
+.mt-2 {
+  margin-top: 1rem;
+}
+.mt-3 {
+  margin-top: 1.5rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+.mb-2 {
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   Buttons (Global)
+========================= */
+button {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e63e3f;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   Inputs (Global)
+========================= */
+input {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: var(--primary-color);
+}
+
+/* =========================
+   Error & Success Text
+========================= */
+.error-text {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.success-text {
+  color: var(--success-color);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}

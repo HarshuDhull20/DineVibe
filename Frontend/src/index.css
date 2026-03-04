@@ -1,0 +1,49 @@
+/* =====================================
+   Global App-Level Styling
+   (Loaded once at app entry)
+===================================== */
+
+/* Ensure full-height layout */
+html,
+body {
+  height: 100%;
+}
+
+/* Prevent horizontal scrolling bugs */
+body {
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling for UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Disable text selection on buttons */
+button {
+  user-select: none;
+}
+
+/* Remove default link styling */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Images should never overflow containers */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove input autofill yellow background (Chrome) */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+  box-shadow: 0 0 0px 1000px #ffffff inset;
+}
+
+/* Accessibility: focus outline only when keyboard navigating */
+:focus-visible {
+  outline: 2px solid #ff4d4f;
+  outline-offset: 2px;
+}

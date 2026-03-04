@@ -1,0 +1,696 @@
+/* =========================================
+   GLOBAL WRAPPER
+========================================= */
+
+.auth-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f4f6f9, #e2e8f0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  padding: 20px;
+}
+
+/* =========================================
+   LOGO SECTION
+========================================= */
+
+.auth-logo {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.logo-icon {
+  width: 56px;
+  height: 56px;
+  background: #4f46e5;
+  color: white;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 24px;
+}
+
+.auth-logo h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.auth-logo p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.auth-card {
+  width: 420px;
+  max-width: 100%;
+  background: white;
+  padding: 32px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h2 {
+  margin-bottom: 6px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+.auth-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* =========================================
+   INPUT GROUP
+========================================= */
+
+.auth-input-group {
+  margin-bottom: 16px;
+}
+
+.auth-input-group label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.auth-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d1d5db;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.auth-input:focus-within {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.auth-input input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  background: transparent;
+}
+
+/* =========================================
+   FORGOT PASSWORD
+========================================= */
+
+.forgot-password {
+  text-align: right;
+  font-size: 13px;
+  color: #4f46e5;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.primary-btn {
+  background: #4f46e5;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.primary-btn:hover {
+  background: #4338ca;
+}
+
+.primary-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.secondary-btn {
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: #f9fafb;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.auth-divider {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.auth-divider span {
+  background: white;
+  padding: 0 12px;
+  font-size: 13px;
+  color: #6b7280;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-divider::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #e5e7eb;
+  top: 50%;
+  left: 0;
+  z-index: 0;
+}
+
+/* =========================================
+   GOOGLE BUTTON
+========================================= */
+
+.google-btn {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.google-btn:hover {
+  background: #f9fafb;
+}
+
+.google-btn img {
+  width: 18px;
+}
+
+/* =========================================
+   NOTE TEXT
+========================================= */
+
+.auth-note {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* =========================================
+   MFA SECTION
+========================================= */
+
+.mfa-method-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.mfa-method-tabs button {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 8px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.mfa-method-tabs button.active {
+  background: #4f46e5;
+  color: white;
+  border: none;
+}
+
+.mfa-box {
+  background: #eef2ff;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.mfa-qr {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.mfa-qr img {
+  width: 180px;
+}
+
+.mfa-manual {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.otp-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
+/* =========================================
+   PASSWORD RULES
+========================================= */
+.password-rules {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #666;
+}
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0;
+  opacity: 0.4;
+  transition: all 0.2s ease;
+}
+
+.rule.valid {
+  color: #2ecc71;
+  opacity: 1;
+  font-weight: 500;
+}
+
+
+
+/* =========================================
+   SUCCESS SCREEN
+========================================= */
+
+.success-card {
+  text-align: center;
+  padding: 40px 32px;
+}
+
+.success-icon {
+  color: #16a34a;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.success-redirect-text {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 12px;
+}
+
+/* =========================================
+   SUCCESS POPUP (Top Right)
+========================================= */
+
+.mfa-success-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #16a34a;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 24px;
+  }
+
+  .auth-wrapper {
+    padding: 16px;
+  }
+}
+/* Recommended Banner */
+.recommended-method-banner {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.recommended-method-banner strong { color: #1e40af; font-size: 14px; display: block; }
+.recommended-method-banner p { color: #3b82f6; font-size: 12px; margin: 0; }
+
+/* Setup Steps */
+.setup-step { text-align: left; margin-bottom: 24px; }
+.step-title { font-weight: 600; font-size: 14px; margin-bottom: 12px; }
+
+.app-download-btns { display: flex; gap: 10px; }
+.app-btn {
+  flex: 1;
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.app-btn span { display: block; font-size: 10px; color: #94a3b8; font-weight: 400; }
+
+.qr-container { 
+  background: white; 
+  padding: 15px; 
+  border-radius: 12px; 
+  border: 1px solid #f1f5f9; 
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.manual-text { font-size: 12px; color: #64748b; margin-bottom: 6px; }
+.manual-key-display {
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: 1px solid #e2e8f0;
+}
+
+/* OTP Styling */
+.otp-input-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
+.otp-box {
+  width: 45px;
+  height: 48px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+.otp-box:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+
+.demo-notice {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  color: #92400e;
+  font-size: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+/* Container sizing */
+.auth-card.setup-mode { max-width: 480px; }
+.auth-card.login-mode { max-width: 400px; }
+
+/* Recommended Banner */
+.recommended-banner {
+  background: #f0f7ff;
+  border: 1px solid #cce3ff;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.recommended-banner strong { color: #1a56db; font-size: 14px; display: block; }
+.recommended-banner p { color: #3f83f8; font-size: 12px; margin: 0; }
+
+/* Setup Steps */
+.setup-step { text-align: left; margin-bottom: 20px; }
+.step-label { font-weight: 600; font-size: 14px; margin-bottom: 10px; }
+
+.app-grid { display: flex; gap: 8px; }
+.app-store-btn {
+  flex: 1;
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+.app-store-btn span { display: block; font-size: 10px; color: #9ca3af; font-weight: 400; }
+
+.qr-wrapper {
+  background: white;
+  border: 1px solid #f3f4f6;
+  padding: 15px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.manual-label { font-size: 12px; color: #6b7280; margin-bottom: 5px; }
+.manual-key {
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+/* OTP Squares */
+.otp-container { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; }
+.otp-input-square {
+  width: 45px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  transition: all 0.2s;
+}
+.otp-input-square:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  outline: none;
+}
+
+.demo-notice {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  color: #92400e;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+/* Card Mode Switching */
+.auth-card.setup-mode { max-width: 480px; }
+.auth-card.login-mode { max-width: 400px; }
+
+/* Recommended Banner (Figma Style) */
+.recommended-banner {
+  background: #f0f7ff;
+  border: 1px solid #cce3ff;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.recommended-banner strong { color: #1a56db; font-size: 14px; display: block; }
+.recommended-banner p { color: #3f83f8; font-size: 12px; margin: 0; }
+
+/* Setup Steps */
+.setup-step { text-align: left; margin-bottom: 20px; }
+.step-label { font-weight: 600; font-size: 14px; margin-bottom: 10px; color: #374151; }
+
+.app-grid { display: flex; gap: 8px; }
+.app-store-btn {
+  flex: 1;
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+.app-store-btn span { display: block; font-size: 10px; color: #9ca3af; font-weight: 400; }
+
+/* QR and Manual Entry */
+.qr-wrapper {
+  background: white;
+  border: 1px solid #f3f4f6;
+  padding: 15px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.manual-label { font-size: 12px; color: #6b7280; margin-bottom: 5px; }
+.manual-key {
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+/* OTP Grid Styling */
+.input-label { display: block; text-align: left; font-size: 13px; margin-bottom: 8px; color: #4b5563; }
+.otp-container { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; }
+.otp-input-square {
+  width: 45px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+}
+.otp-input-square:focus { border-color: #4f46e5; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); outline: none; }
+/* SUCCESS TOAST (TOP RIGHT) */
+.success-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: #064e3b;
+  color: #ecfdf5;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-out;
+  z-index: 1000;
+}
+
+.toast-icon {
+  background: #10b981;
+  border-radius: 50%;
+  padding: 2px;
+  display: flex;
+}
+
+/* CENTERED CARD */
+.success-card-center {
+  text-align: center;
+  padding: 48px 32px;
+  max-width: 400px;
+}
+
+.success-check-large {
+  background: #f0fdf4;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+/* LOADING BAR ANIMATION */
+.loading-bar-container {
+  width: 100%;
+  height: 4px;
+  background: #f1f5f9;
+  border-radius: 2px;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: #5b5ffb;
+  width: 0%;
+  animation: progress 2s linear forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}

@@ -1,0 +1,185 @@
+/* ===== Layout ===== */
+.login-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #2d2f91 0%, #1e1f5c 100%);
+}
+
+/* ===== Left Branding Panel ===== */
+.login-left {
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+
+.brand-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.brand-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+/* ===== Right Login Panel ===== */
+.login-right {
+  width: 480px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 360px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Header ===== */
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #2d2f91;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+/* ===== Input Fields ===== */
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.input-group input:focus {
+  border-color: #2d2f91;
+  box-shadow: 0 0 0 3px rgba(45, 47, 145, 0.1);
+  outline: none;
+}
+
+/* ===== Remember Row ===== */
+.remember-row {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 20px;
+  color: #374151;
+}
+
+.remember-row input {
+  margin-right: 8px;
+}
+
+/* ===== Login Button ===== */
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2d2f91;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #1e1f5c;
+}
+
+.primary-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ===== Divider ===== */
+.divider {
+  text-align: center;
+  margin: 22px 0;
+  font-size: 13px;
+  color: #9ca3af;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+/* ===== Google Button ===== */
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.google-btn:hover {
+  background: #f9fafb;
+}
+
+/* ===== Error ===== */
+.error {
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 13px;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .login-left {
+    display: none;
+  }
+
+  .login-right {
+    width: 100%;
+  }
+}

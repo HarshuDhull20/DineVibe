@@ -1,0 +1,154 @@
+/* ===== Layout ===== */
+.otp-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #2d2f91 0%, #1e1f5c 100%);
+}
+
+/* ===== Left Panel ===== */
+.otp-left {
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+
+.brand-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.brand-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+/* ===== Right Panel ===== */
+.otp-right {
+  width: 480px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.otp-card {
+  width: 360px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Titles ===== */
+.otp-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d2f91;
+  margin-bottom: 6px;
+}
+
+.otp-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+/* ===== OTP Inputs ===== */
+.otp-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.otp-inputs input {
+  width: 48px;
+  height: 54px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.otp-inputs input:focus {
+  border-color: #2d2f91;
+  box-shadow: 0 0 0 3px rgba(45, 47, 145, 0.1);
+  outline: none;
+}
+
+/* ===== Button ===== */
+.verify-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2d2f91;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.verify-btn:hover {
+  background: #1e1f5c;
+}
+
+.verify-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ===== Error ===== */
+.otp-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 13px;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* ===== Resend ===== */
+.resend-section {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.resend-link {
+  color: #2d2f91;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.resend-link:hover {
+  text-decoration: underline;
+}
+
+.otp-timer {
+  color: #9ca3af;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .otp-left {
+    display: none;
+  }
+
+  .otp-right {
+    width: 100%;
+  }
+}
