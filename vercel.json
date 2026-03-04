@@ -14,7 +14,6 @@
   "routes": [
     { "src": "/auth/(.*)", "dest": "Backend/app/main.py" },
     { "src": "/api/(.*)", "dest": "Backend/app/main.py" },
-    { "src": "/(.*)", "dest": "Frontend/$1", "continue": true },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "Frontend/index.html" }
   ]
