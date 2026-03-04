@@ -32,15 +32,13 @@ app = FastAPI(
 # -------------------------------------------------
 # CORS 
 # -------------------------------------------------
-# -------------------------------------------------
-# CORS 
-# -------------------------------------------------
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5174",
-        "https://dinevibe1.vercel.app/",
+        "http://localhost:5173",          # Standard Vite port
+        "http://localhost:5174",          # specific local port
+        "https://dinevibe1.vercel.app",   
     ],
     allow_credentials=True,
     allow_methods=["*"],
