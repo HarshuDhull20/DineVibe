@@ -12,7 +12,6 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           charts: ['recharts'],
-          firebase: ['firebase'],
           icons: ['lucide-react'],
         }
       }
