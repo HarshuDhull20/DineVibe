@@ -1,7 +1,6 @@
 import sys
 import os
 
-
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
@@ -76,10 +75,11 @@ async def health_check():
 async def api_health():
     return {"status": "ok", "message": "API is running"}
 
-app.include_router(auth.router, prefix="/api")
-app.include_router(user.router, prefix="/api")
-app.include_router(admin.router, prefix="/api")
-app.include_router(mfa.router, prefix="/api")
+# ✅ No prefix here — routers define their own
+app.include_router(auth.router)
+app.include_router(user.router)
+app.include_router(admin.router)
+app.include_router(mfa.router)
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8001, reload=True)
