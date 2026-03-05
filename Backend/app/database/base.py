@@ -8,11 +8,8 @@ from sqlalchemy.orm import declarative_base
 from app.config.settings import settings
 
 # =====================================================
-# SSL CONFIGURATION (AWS RDS REQUIREMENT)
+# SSL CONFIGURATION
 # =====================================================
-# AWS RDS uses encrypted connections.
-# We create an SSL context to securely connect to PostgreSQL.
-
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
@@ -20,24 +17,23 @@ ssl_context.verify_mode = ssl.CERT_NONE
 # =====================================================
 # DATABASE ENGINE
 # =====================================================
-# Using async SQLAlchemy + asyncpg for high concurrency
-# This is how real production FastAPI apps work
+# ✅ Vercel serverless: NO connection pooling
+# Each function invocation gets its own connection
 
 engine = create_async_engine(
     settings.DATABASE_URL,
-    echo=False,                       # Turn ON only for debugging
-    pool_pre_ping=True,               # Ensures stale connections are recycled
-    pool_size=10,                     # Base number of connections
-    max_overflow=20,                  # Extra connections during peak load
-    connect_args={"ssl": ssl_context} # Required for AWS RDS SSL
+    echo=False,
+    pool_pre_ping=True,
+    # ✅ Serverless-compatible settings
+    pool_size=1,
+    max_overflow=0,
+    pool_recycle=300,
+    connect_args={"ssl": ssl_context}
 )
 
 # =====================================================
 # SESSION FACTORY
 # =====================================================
-# Every API request gets its own DB session
-# Sessions are short-lived and safely closed
-
 AsyncSessionLocal = async_sessionmaker(
     bind=engine,
     class_=AsyncSession,
@@ -49,21 +45,12 @@ AsyncSessionLocal = async_sessionmaker(
 # =====================================================
 # BASE MODEL
 # =====================================================
-# All models (User, Session, AuditLog, etc.)
-# inherit from this Base
-
 Base = declarative_base()
 
 # =====================================================
 # DATABASE DEPENDENCY
 # =====================================================
-# This is injected into FastAPI routes using Depends()
-
 async def get_db():
-    """
-    Yields a database session per request.
-    Ensures clean open/close lifecycle.
-    """
     async with AsyncSessionLocal() as session:
         try:
             yield session
@@ -73,13 +60,11 @@ async def get_db():
 # =====================================================
 # DATABASE INITIALIZER
 # =====================================================
-# Used during startup & seed.py
-
 async def init_db():
-    """
-    Creates all database tables based on models.
-    Used only during initial setup or migrations.
-    """
-    async with engine.begin() as conn:
-        import app.models  # Import here to avoid circular imports
-        await conn.run_sync(Base.metadata.create_all)
+    try:
+        async with engine.begin() as conn:
+            import app.models
+            await conn.run_sync(Base.metadata.create_all)
+        print("✅ Database initialized successfully")
+    except Exception as e:
+        print(f"⚠️ Database init failed: {e}")
