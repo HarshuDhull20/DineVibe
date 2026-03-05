@@ -18,7 +18,8 @@
     },
     {
       "source": "/(.*)",
-      "destination": "Frontend/dist/$1"
+      "destination": "Frontend/$1"
     }
   ]
 }
+// force redeploy
