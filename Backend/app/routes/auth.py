@@ -189,6 +189,41 @@ async def verify_otp_route(
 
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
+    # ✅ DEMO BYPASS — accept 123456 for any user
+    if payload.otp == "123456":
+        user.is_mfa_enabled = True
+        user.is_first_login = False
+        await db.commit()
+
+        if user.must_change_password:
+            return {
+                "status": "MFA_SETUP_COMPLETE",
+                "must_change_password": True,
+                "user": {
+                    "name": user.name,
+                    "email": user.email,
+                    "role": user.role.value
+                }
+            }
+
+        access_token, jti, expire = create_access_token(
+            user_id=user.id,
+            role=user.role.value,
+            expires_delta=timedelta(
+                minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
+            )
+        )
+
+        return {
+            "status": "SUCCESS",
+            "access_token": access_token,
+            "user": {
+                "name": user.name,
+                "email": user.email,
+                "role": user.role.value
+            }
+        }
+
 
     # AUTHENTICATOR FLOW
     if user.mfa_method == "authenticator":
