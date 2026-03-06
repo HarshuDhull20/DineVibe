@@ -14,7 +14,7 @@ export default function MenuManagement() {
   const [shareOpen, setShareOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [addItemOpen, setAddItemOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState(5); 
+  const [currentStep, setCurrentStep] = useState(1); 
   const [isAiLoading, setIsAiLoading] = useState(false);
   
   const [categories, setCategories] = useState([
@@ -31,7 +31,8 @@ export default function MenuManagement() {
     category: "Starters",
     type: "Veg",
     price: "0.00",
-    applyTax: true
+    applyTax: true,
+    image: ""
   });
 
   const [seoData, setSeoData] = useState({
@@ -52,10 +53,42 @@ export default function MenuManagement() {
   const publicMenuUrl = "https://dinevibe.com/menu/summer-brunch-menu";
 
   const menuItems = [
-    { id: 1, name: "Truffle Mushroom Soup", price: "12.00", type: "VEG", status: "Synced", time: "2 mins ago" },
-    { id: 2, name: "Grilled Salmon", price: "24.50", type: "NON-VEG", status: "Modified Locally", time: "1 hour ago" },
-    { id: 3, name: "Classic Burger", price: "16.00", type: "NON-VEG", status: "Conflict", time: "5 mins ago", image: "https://images.unsplash.com/photo-1550547660-d9450f859349" },
-    { id: 4, name: "Caesar Salad", price: "10.50", type: "VEG", status: "Synced", time: "10 mins ago", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c" }
+    { 
+      id: 1, 
+      name: "Truffle Mushroom Soup", 
+      price: "12.00", 
+      type: "VEG", 
+      status: "Synced", 
+      time: "2 mins ago",
+      image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80" 
+    },
+    { 
+      id: 2, 
+      name: "Grilled Salmon", 
+      price: "24.50", 
+      type: "NON-VEG", 
+      status: "Modified Locally", 
+      time: "1 hour ago",
+      image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80"
+    },
+    { 
+      id: 3, 
+      name: "Classic Burger", 
+      price: "16.00", 
+      type: "NON-VEG", 
+      status: "Conflict", 
+      time: "5 mins ago", 
+      image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" 
+    },
+    { 
+      id: 4, 
+      name: "Caesar Salad", 
+      price: "10.50", 
+      type: "VEG", 
+      status: "Synced", 
+      time: "10 mins ago", 
+      image: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=800&q=80" 
+    }
   ];
 
   const handleInputChange = (e) => {
@@ -104,7 +137,6 @@ export default function MenuManagement() {
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
     };
     if (platform === 'instagram') {
-        alert("Instagram does not support direct link sharing. Opening Instagram to post manually.");
         window.open("https://www.instagram.com", "_blank");
     } else {
         window.open(shares[platform], "_blank");
@@ -112,7 +144,7 @@ export default function MenuManagement() {
   };
 
   const handleAttachment = (type) => {
-    alert(`Generating snippet for ${type}... Copy the generated code to your ${type} settings.`);
+    alert(`Generating snippet for ${type}...`);
   };
 
   const handleAddCategory = (e) => {
@@ -290,7 +322,7 @@ export default function MenuManagement() {
                       <div className="warning-icon-bg"><AlertTriangle size={16} color="#b45309"/></div>
                       <div className="warning-text">
                         <h6>Sync Warning</h6>
-                        <p>Updating the price here will override the POS price during the next sync cycle. Ensure this is intended.</p>
+                        <p>Updating the price here will override the POS price during the next sync cycle.</p>
                       </div>
                     </div>
                     <div className="tax-settings-section">
@@ -308,26 +340,31 @@ export default function MenuManagement() {
 
                 {currentStep === 3 && (
                   <div className="addons-step-content">
-                    <div className="step-header-row">
-                      <h4>Add-on Groups</h4>
-                      <button className="add-small-btn"><Plus size={14}/> New Group</button>
+                    <div className="section-header-row">
+                      <div>
+                        <h4>Add-on Groups</h4>
+                        <p style={{fontSize: '13px', color: '#64748b'}}>Define optional extras</p>
+                      </div>
+                      <button className="add-small-btn" style={{background: '#f1f5f9', border: 'none', padding: '8px 16px', borderRadius: '8px', fontWeight: '700'}}>
+                        + New Group
+                      </button>
                     </div>
-                    <div className="addons-list">
-                      {[{ title: "Toppings", subtitle: "Mandatory • Select 1" }, { title: "Sides", subtitle: "Optional • Max 3" }, { title: "Drinks", subtitle: "Optional • Max 3" }].map((group) => (
+                    <div className="addons-list" style={{marginTop: '24px'}}>
+                      {[
+                        { title: "Toppings", subtitle: "Mandatory • Select 1" },
+                        { title: "Sides", subtitle: "Optional • Max 3" }
+                      ].map((group) => (
                         <div key={group.title} className="addon-group-card">
                           <div className="addon-info">
                             <h5>{group.title}</h5>
                             <span>{group.subtitle}</span>
                           </div>
-                          <div className="addon-actions">
-                            <button className="icon-btn-text">Edit</button>
-                            <button className="icon-btn-danger"><Trash2 size={16}/></button>
+                          <div className="addon-actions" style={{display: 'flex', gap: '12px'}}>
+                            <button style={{background: 'transparent', border: 'none', color: '#4f46e5', fontWeight: '700'}}>Edit</button>
+                            <Trash2 size={18} color="#ef4444" />
                           </div>
                         </div>
                       ))}
-                    </div>
-                    <div className="reorder-hint">
-                      <p>Drag and drop add-on groups to reorder</p>
                     </div>
                   </div>
                 )}
@@ -337,7 +374,7 @@ export default function MenuManagement() {
                     <div className="input-group">
                       <label>Branch Availability</label>
                       <div className="branch-selection-list">
-                        {["Main Branch (Downtown)", "Westside Mall", "Airport Kiosk"].map((branch) => (
+                        {["Main Branch (Downtown)", "Westside Mall"].map((branch) => (
                           <div key={branch} className="branch-card-option active">
                             <div className="branch-card-info">
                               <MapPin size={16} color="#4f46e5" />
@@ -348,7 +385,6 @@ export default function MenuManagement() {
                         ))}
                       </div>
                     </div>
-
                     <div className="input-group">
                       <label>Time Slots</label>
                       <div className="time-slots-grid">
@@ -358,27 +394,6 @@ export default function MenuManagement() {
                             <h6>All Day</h6>
                             <p>11:00 AM - 11:00 PM</p>
                           </div>
-                        </div>
-                        <div className="time-slot-card">
-                          <Clock size={16} color="#94a3b8" />
-                          <div className="time-slot-text">
-                            <h6>Lunch Only</h6>
-                            <p>11:00 AM - 3:00 PM</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="stock-management-section">
-                      <label className="section-label">Stock Management</label>
-                      <div className="flex-row gap-16">
-                        <div className="input-group flex-1">
-                          <label>Daily Limit</label>
-                          <input type="text" placeholder="Unlimited" className="faint-input" />
-                        </div>
-                        <div className="input-group flex-1">
-                          <label>Reset Time</label>
-                          <input type="text" placeholder="00:00 AM" className="faint-input" />
                         </div>
                       </div>
                     </div>
@@ -397,16 +412,7 @@ export default function MenuManagement() {
                         </div>
                         <div className="selection-toggle active"></div>
                       </div>
-                      <div className="integration-card active">
-                        <div className="integration-icon-bg orange"><Globe size={18} color="#ea580c" /></div>
-                        <div className="integration-info">
-                          <h6>Delivery Platforms</h6>
-                          <p>Sync to DoorDash, UberEats</p>
-                        </div>
-                        <div className="selection-toggle active"></div>
-                      </div>
                     </div>
-
                     <div className="sync-summary-box">
                       <label>Sync Summary</label>
                       <div className="summary-checklist">
@@ -424,7 +430,7 @@ export default function MenuManagement() {
                   <span>Back</span>
                 </button>
                 <div className="footer-right-actions">
-                  {currentStep === 5 && <button className="btn-draft" onClick={() => setAddItemOpen(false)}>Save as Draft</button>}
+                  {currentStep === 5 && <button className="btn-draft" onClick={() => setAddItemOpen(false)}>Save Draft</button>}
                   <button className="btn-step-nav next" onClick={() => currentStep < 5 ? setCurrentStep(currentStep + 1) : handleCreateItem()}>
                     <span>{currentStep === 5 ? "Publish" : "Next"}</span>
                     <ChevronRight size={18} />
@@ -436,31 +442,27 @@ export default function MenuManagement() {
             <div className="add-item-right">
               <div className="preview-header-side">
                 <h4>Live Preview</h4>
-                <p>This is how customers will see this item.</p>
+                <p>Real-time customer view.</p>
               </div>
               <div className="preview-mobile-frame">
                 <div className="preview-mobile-screen">
-                  <div className="preview-img-box">No Image</div>
+                  <div className="preview-img-box" style={{ 
+                    backgroundImage: newItem.image ? `url(${newItem.image})` : `url('https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?auto=format&fit=crop&w=600&q=60')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    {!newItem.image && <span style={{backgroundColor: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: '4px', color: 'white', fontSize: '12px'}}>Default Preview</span>}
+                  </div>
                   <div className="preview-content">
                     <div className="preview-title-row">
                       <h5>{newItem.name || "Item Name"}</h5>
                       <span className="preview-price">${newItem.price || "0.00"}</span>
                     </div>
-                    <div className="preview-badges">
-                      <span className="p-badge veg">VEG</span>
-                      <span className="p-badge popular">POPULAR</span>
-                    </div>
-                    <p className="preview-desc">{newItem.description || "Delicious dish description goes here..."}</p>
-                    <div className="preview-addon-row">
-                      <span>Add Extras</span>
-                      <div className="addon-item">
-                        <div className="addon-check"></div> 
-                        <span>Extra Cheese</span> 
-                        <span className="addon-price">+$1.50</span>
-                      </div>
-                    </div>
+                    <p className="preview-desc">{newItem.description || "Description..."}</p>
                     <div className="preview-action-row">
-                      <div className="quantity-ctrl"><span>-</span> 1 <span>+</span></div>
                       <button className="add-cart-btn">Add to Cart</button>
                     </div>
                   </div>
@@ -487,14 +489,6 @@ export default function MenuManagement() {
                 <div className="input-group">
                   <label>Description</label>
                   <textarea placeholder="Category description..." value={newCat.description} onChange={(e) => setNewCat({...newCat, description: e.target.value})}/>
-                </div>
-                <div className="input-group">
-                  <label>Branch Assignment</label>
-                  <select value={newCat.branch} onChange={(e) => setNewCat({...newCat, branch: e.target.value})}><option>Main Branch</option><option>Westside Mall</option></select>
-                </div>
-                <div className="checkbox-group">
-                  <input type="checkbox" id="sync-ext" checked={newCat.sync} onChange={(e) => setNewCat({...newCat, sync: e.target.checked})}/>
-                  <label htmlFor="sync-ext">Sync to External Platform</label>
                 </div>
               </div>
               <div className="modal-footer">
@@ -529,13 +523,6 @@ export default function MenuManagement() {
                   </div>
                 </div>
                 <div className="share-field">
-                  <label>Attach To</label>
-                  <div className="attach-button-row">
-                    <button className="attach-btn" onClick={() => handleAttachment('Mobile App')}><Smartphone size={16}/> Mobile App</button>
-                    <button className="attach-btn" onClick={() => handleAttachment('Website')}><Monitor size={16}/> Website</button>
-                  </div>
-                </div>
-                <div className="share-field">
                   <label>Share on Social</label>
                   <div className="social-icon-row">
                     <div className="social-icon fb" onClick={() => shareSocial('facebook')}><Facebook size={18}/></div>
@@ -559,7 +546,7 @@ export default function MenuManagement() {
                 <div className="seo-icon-bg"><GlobeIcon size={20} color="#4f46e5"/></div>
                 <div>
                   <h3>SEO Publishing</h3>
-                  <p>Manage search engine visibility for Summer Brunch Menu</p>
+                  <p>Search engine visibility</p>
                 </div>
               </div>
               <button className="close-x-btn" onClick={() => setSeoOpen(false)}><X size={20}/></button>
@@ -576,45 +563,26 @@ export default function MenuManagement() {
                   <div className="seo-field">
                     <label>SEO Title</label>
                     <input type="text" name="title" value={seoData.title} onChange={handleInputChange} />
-                    <span className={`char-count ${seoData.title.length > 60 ? 'negative' : 'positive'}`}>
-                        {seoData.title.length <= 60 ? '✓ Optimal length' : '⚠ Too long'} ({seoData.title.length}/60 chars)
-                    </span>
                   </div>
                   <div className="seo-field">
                     <label>Meta Description</label>
-                    <textarea name="description" placeholder="Briefly describe your menu..." value={seoData.description} onChange={handleInputChange}></textarea>
-                  </div>
-                  <div className="seo-field">
-                    <label>Slug URL</label>
-                    <div className="slug-input-group">
-                      <span className="slug-prefix">dinevibe.com/menu/</span>
-                      <input type="text" name="slug" value={seoData.slug} onChange={handleInputChange} />
-                    </div>
+                    <textarea name="description" value={seoData.description} onChange={handleInputChange}></textarea>
                   </div>
                 </div>
               </div>
               <div className="seo-right-column">
                 <div className="seo-section-card preview-bg">
-                  <h4><Eye size={14} style={{marginRight: '8px'}}/> Search Result Preview</h4>
+                  <h4>Search Result Preview</h4>
                   <div className="google-preview-box">
-                    <span className="google-url">dinevibe.com › menu › {seoData.slug}</span>
+                    <span className="google-url">dinevibe.com › menu</span>
                     <h5 className="google-title">{seoData.title}</h5>
-                    <p className="google-desc">{seoData.description || "No description provided..."}</p>
+                    <p className="google-desc">{seoData.description}</p>
                   </div>
-                </div>
-                <div className="ai-suggestion-box">
-                  <div className="ai-header">
-                    <Sparkles size={16} color="#4f46e5" />
-                    <span>AI Suggestion</span>
-                  </div>
-                  <p className="ai-text">"Based on current trends, adding keywords like 'Gluten-Free' could boost visibility."</p>
-                  <button className="apply-ai-btn" onClick={applyAiSuggestions}>Apply Suggestions</button>
                 </div>
               </div>
             </div>
             <div className="seo-footer">
-              <button className="cancel-btn" onClick={() => setSeoOpen(false)}>Cancel</button>
-              <button className="save-seo-btn" onClick={() => { alert("SEO Settings Saved!"); setSeoOpen(false); }}>Save SEO Settings</button>
+              <button className="save-seo-btn" onClick={() => setSeoOpen(false)}>Save Settings</button>
             </div>
           </div>
         </div>
@@ -625,7 +593,6 @@ export default function MenuManagement() {
           <button className="preview-close-btn" onClick={() => setPreviewOpen(false)}>
             <X size={24} />
           </button>
-          
           <div className="phone-container">
             <div className="phone-frame">
               <div className="phone-screen">
@@ -637,42 +604,32 @@ export default function MenuManagement() {
                     <span className="cart-count">2</span>
                   </div>
                 </div>
-
                 <div className="mobile-body">
-                  <div className="mobile-search-bar">
-                    <Search size={16} />
-                    <span>Search for dishes...</span>
-                  </div>
-
                   <div className="mobile-tabs">
                     <span className="m-tab active">All</span>
                     <span className="m-tab">Starters</span>
-                    <span className="m-tab">Mains</span>
-                    <span className="m-tab">Desserts</span>
                   </div>
-
                   <h4 className="mobile-section-title">Popular Now 🔥</h4>
                   <div className="mobile-horizontal-scroll">
                     <div className="m-card-small">
-                      <div className="m-img-placeholder" />
+                      <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200" alt="Soup" style={{width: '100%', height: '80px', objectFit: 'cover', borderRadius: '8px'}} />
                       <p>Mushroom Soup</p>
                       <span className="m-price">$12.00</span>
                       <button className="m-add-plus">+</button>
                     </div>
                     <div className="m-card-small">
-                      <div className="m-img-placeholder" />
+                      <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200" alt="Salmon" style={{width: '100%', height: '80px', objectFit: 'cover', borderRadius: '8px'}} />
                       <p>Grilled Salmon</p>
                       <span className="m-price">$24.50</span>
                       <button className="m-add-plus">+</button>
                     </div>
                   </div>
-
                   <h4 className="mobile-section-title">Starters</h4>
                   <div className="m-list-item">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Salad" />
+                    <img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=200" alt="Salad" style={{width: '60px', height: '60px', borderRadius: '8px', objectFit: 'cover'}} />
                     <div className="m-list-info">
                       <h5>Caesar Salad</h5>
-                      <p>Fresh Romaine with parmesan...</p>
+                      <p>Fresh Romaine...</p>
                       <div className="m-list-footer">
                         <span className="m-price">$10.50</span>
                         <button className="m-add-btn">Add</button>
