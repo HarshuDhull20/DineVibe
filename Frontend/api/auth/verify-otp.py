@@ -1,6 +1,10 @@
 from http.server import BaseHTTPRequestHandler
 import json
 
+# Simple in-memory store to track users who have set password
+# In production, this would be in database
+USERS_WITH_PASSWORD_SET = set()
+
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         content_length = int(self.headers.get('Content-Length', 0))
@@ -8,6 +12,7 @@ class handler(BaseHTTPRequestHandler):
         data = json.loads(body) if body else {}
         
         otp = data.get('otp', '')
+        email = data.get('email', 'demo@dinevibe.com')
         
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
@@ -15,12 +20,14 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         
         if otp == "123456":
+            # First login = must set password
+            # For demo: always send to password setup
             response = {
-                "status": "SUCCESS",
-                "access_token": "demo_token_123",
+                "status": "MFA_SETUP_COMPLETE",
+                "must_change_password": True,
                 "user": {
-                    "name": "Demo User",
-                    "email": data.get('email', 'demo@dinevibe.com'),
+                    "name": email.split('@')[0].title(),
+                    "email": email,
                     "role": "admin"
                 }
             }
