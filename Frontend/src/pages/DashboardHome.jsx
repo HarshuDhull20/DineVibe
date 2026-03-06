@@ -6,7 +6,8 @@ import {
 } from "recharts";
 import { 
   TrendingUp, ShoppingBag, Calendar, Users, 
-  Upload, Video, Plus, ChevronRight, MoreHorizontal 
+  Upload, Video, Plus, ChevronRight, MoreHorizontal,
+  LogOut
 } from "lucide-react";
 
 import "../styles/dashboard.css";
@@ -22,39 +23,37 @@ export default function DashboardHome() {
   const navigate = useNavigate();
   const userName = localStorage.getItem("user_name") || "Alex";
 
-  // State for functionality
   const [isPosting, setIsPosting] = useState(false);
   const storyInputRef = useRef(null);
   const videoInputRef = useRef(null);
 
   /* ==============================
-     FUNCTIONALITY HANDLERS
+     HANDLERS
   ============================== */
 
-  // 1. Upload Story Logic
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  }
+
   const handleStoryUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       console.log("Uploading Story:", file.name);
       alert(`Story "${file.name}" upload started!`);
-      // Add your API call to Firebase/S3 here
     }
   };
 
-  // 2. Upload Video Logic
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       console.log("Uploading Video:", file.name);
       alert(`Video "${file.name}" upload started!`);
-      // Add your API call to Firebase/S3 here
     }
   };
 
-  // 3. Create Post Logic
   const handleCreatePost = () => {
     setIsPosting(true);
-    // This would typically open a modal. For now, we'll use an alert.
     const content = prompt("Enter your post content:");
     if (content) {
       alert("Post created successfully!");
@@ -64,7 +63,7 @@ export default function DashboardHome() {
 
   return (
     <div className="dashboard-container">
-      {/* HIDDEN FILE INPUTS FOR FUNCTIONALITY */}
+
       <input 
         type="file" 
         ref={storyInputRef} 
@@ -80,7 +79,6 @@ export default function DashboardHome() {
         onChange={handleVideoUpload} 
       />
 
-      {/* HEADER SECTION */}
       <header className="dashboard-header-modern">
         <div className="header-greeting">
           <h2>Good Morning, {userName}! 👋</h2>
@@ -109,10 +107,17 @@ export default function DashboardHome() {
           >
             <Plus size={16}/> {isPosting ? "Posting..." : "Create Post"}
           </button>
+
+          <button 
+            className="btn-secondary"
+            onClick={handleLogout}
+          >
+            <LogOut size={16}/> Logout
+          </button>
+
         </div>
       </header>
 
-      {/* KPI GRID */}
       <section className="metrics-row">
         <div className="kpi-card">
           <div className="kpi-info">
@@ -151,7 +156,6 @@ export default function DashboardHome() {
         </div>
       </section>
 
-      {/* REMAINDER OF COMPONENT (Revenue Overview, Orders, etc.) */}
       <div className="main-data-grid">
         <div className="chart-card">
           <div className="card-header">
@@ -163,7 +167,7 @@ export default function DashboardHome() {
               <CartesianGrid vertical={false} stroke="#f1f5f9" />
               <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} dy={10} />
               <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} dx={-10} />
-              <Tooltip contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)'}} />
+              <Tooltip contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15 -3 rgba(0,0,0,0.1)'}} />
               <Line type="monotone" dataKey="value" stroke="#5b5ffb" strokeWidth={3} dot={{r: 4, fill: '#5b5ffb', strokeWidth: 2, stroke: '#fff'}} />
             </LineChart>
           </ResponsiveContainer>
